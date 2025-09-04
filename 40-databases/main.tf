@@ -155,3 +155,39 @@ resource "terraform_data" "rabbitmq" {
          ]
     }
 }
+
+resource "aws_route53_record" "mongodb" {
+    zone_id = var.zone_id
+    name = "mongodb-${var.environment}.${var.zone_name}" #mongodb-dev.arunkumarnelluri.site
+    type = "A"
+    ttl = 1
+    records = [aws_instance.mongodb.private_ip]
+    allow_overwrite = true
+}
+
+resource "aws_route53_record" "redis" {
+    zone_id = var.zone_id
+    name = "mongodb-${var.environment}.${var.zone_name}" #redis-dev.arunkumarnelluri.site
+    type = "A"
+    ttl = 1
+    records = [aws_instance.redis.private_ip]
+    allow_overwrite = true
+}
+
+resource "aws_route53_record" "mysql" {
+    zone_id = var.zone_id
+    name = "mongodb-${var.environment}.${var.zone_name}" #mysql-dev.arunkumarnelluri.site
+    type = "A"
+    ttl = 1
+    records = [aws_instance.mysql.private_ip]
+    allow_overwrite = true
+}
+
+resource "aws_route53_record" "rabbitmq" {
+    zone_id = var.zone_id
+    name = "mongodb-${var.environment}.${var.zone_name}" #rabbitmq-dev.arunkumarnelluri.site
+    type = "A"
+    ttl = 1
+    records = [aws_instance.rabbitmq.private_ip]
+    allow_overwrite = true
+}
