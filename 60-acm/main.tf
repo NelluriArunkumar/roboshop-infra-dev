@@ -19,7 +19,7 @@ resource "aws_route53_record" "arunkumarnelluri" {
     for_each = {
         for dvo in aws_acm_certificate.arunkumarnelluri.domain_validation_options : dvo.domain_name => {
             name = dvo.resource_record_name
-            recore = dvo.resource_record_value
+            record = dvo.resource_record_value
             type = dvo.resource_record_type
         }
     }
@@ -35,6 +35,6 @@ resource "aws_route53_record" "arunkumarnelluri" {
 
 resource "aws_acm_certificate_validation" "arunkumarnelluri" {
     certificate_arn = aws_acm_certificate.arunkumarnelluri.arn
-    validation_record_fqdns = [ for record in aws_aws_route53_record.arunkumarnelluri : record.fqdns ]
+    validation_record_fqdns = [ for record in aws_route53_record.arunkumarnelluri : record.fqdn ]
   
 }

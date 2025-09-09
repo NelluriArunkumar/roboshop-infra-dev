@@ -2,7 +2,7 @@
 module "frontend_alb" {
   source = "terraform-aws-modules/alb/aws"
   version = "9.16.0"
-  internal = true
+  internal = false
   name    = "${var.project}-${var.environment}-frontend-alb" #roboshop-dev-frontend-alb
   vpc_id  = local.vpc_id
   subnets = local.public_subnet_ids
